@@ -1,27 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
+
 .App {
+  font-family: "Inconsolata", monospace;
+  background-color: black;
+  color: black;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ff000052;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: white;
+  font-weight: 1000;
+}
+
+.Sign-in-button {
+  color: white;
+  background-color: #ff000036;
+  border: 2px solid #ff000052;
+  margin-top: 24px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Inconsolata", monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.Sign-in-button:hover {
+  background-color: black;
+}
+
+.Sign-out-button {
+  color: white;
+  text-align: left;
+  background-color: #ff000036;
+  border: 2px solid #ff000052;
+  margin-top: 24px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Inconsolata", monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.Sign-out-button:hover {
+  background-color: black;
+}
+
+body {
+  background-color: black;
 }
 
 .App-link {
