@@ -5,14 +5,14 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+//import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { deepOrange, deepPurple } from "@mui/material/colors";
-import LoginIcon from "@mui/icons-material/Login";
+//import LoginIcon from "@mui/icons-material/Login";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
@@ -55,6 +55,7 @@ const VibeAppBar = (props) => {
               <Button
                 key="About"
                 sx={{ my: 2, color: "white", display: "block" }}
+                onClick={() => props.setCreating(true)}
               >
                 Create Playlist
               </Button>
