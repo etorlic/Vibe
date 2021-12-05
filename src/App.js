@@ -22,7 +22,7 @@ export default function App() {
         <VibeAppBar loggedIn={true} login={SignIn} logout={SignOut} setCurrentTab={setCurrentTab} />
       )}
 
-      {(currentTab == useState("Create")) ? (
+      {(currentTab === useState("Create")) ? (
         <CreatePlaylist />
       ) : (
         <div></div>
