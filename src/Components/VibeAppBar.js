@@ -48,14 +48,14 @@ const VibeAppBar = (props) => {
             VIBE
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button key="Home" sx={{ my: 2, color: "white", display: "block" }}>
+            <Button key="Home" sx={{ my: 2, color: "white", display: "block" }} onClick={() => props.setCurrentTab("Home")}>
               Home
             </Button>
             {props.loggedIn ? (
               <Button
-                key="About"
+                key="Create"
                 sx={{ my: 2, color: "white", display: "block" }}
-                onClick={() => props.setCreating(true)}
+                onClick={() => props.setCurrentTab("Create")}
               >
                 Create Playlist
               </Button>
@@ -64,12 +64,14 @@ const VibeAppBar = (props) => {
             <Button
               key="About"
               sx={{ my: 2, color: "white", display: "block" }}
+              onClick={() => props.setCurrentTab("About")}
             >
               About
             </Button>
             <Button
               key="History"
               sx={{ my: 2, color: "white", display: "block" }}
+              onClick={() => props.setCurrentTab("History")}
             >
               History
             </Button>

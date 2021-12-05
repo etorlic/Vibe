@@ -4,24 +4,28 @@ import ProfileCard from "./Components/ProfileCard";
 import LoginToSpotify from "./Components/LoginToSpotify";
 import VibeAppBar from "./Components/VibeAppBar";
 import CreatePlaylist from "./Components/CreatePlaylist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const user = useAuthentication();
-  const [creating, setCreating] = useState(false);
+  const [currentTab, setCurrentTab] = useState("Home");
+  useEffect( () =>
+    console.log(currentTab),
+    [currentTab]
+  )
 
   return (
     <div className="App">
       {!user ? (
-        <VibeAppBar loggedIn={false} login={SignIn} logout={SignOut} setCreating={setCreating} />
+        <VibeAppBar loggedIn={false} login={SignIn} logout={SignOut} setCurrentTab={setCurrentTab} />
       ) : (
-        <VibeAppBar loggedIn={true} login={SignIn} logout={SignOut} setCreating={setCreating} />
+        <VibeAppBar loggedIn={true} login={SignIn} logout={SignOut} setCurrentTab={setCurrentTab} />
       )}
 
-      {creating ? (
+      {(currentTab == useState("Create")) ? (
         <CreatePlaylist />
       ) : (
-        <></>
+        <div></div>
       )}
     </div>
   );
