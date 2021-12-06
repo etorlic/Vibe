@@ -1,40 +1,40 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-//import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { deepOrange, deepPurple } from "@mui/material/colors";
+import * as React from "react"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Toolbar from "@mui/material/Toolbar"
+import IconButton from "@mui/material/IconButton"
+import Typography from "@mui/material/Typography"
+import Menu from "@mui/material/Menu"
+import MenuIcon from "@mui/icons-material/Menu"
+import Container from "@mui/material/Container"
+import Avatar from "@mui/material/Avatar"
+import Button from "@mui/material/Button"
+import Tooltip from "@mui/material/Tooltip"
+import MenuItem from "@mui/material/MenuItem"
+import { deepOrange, deepPurple } from "@mui/material/colors"
 //import LoginIcon from "@mui/icons-material/Login";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Logout"];
+const pages = ["Products", "Pricing", "Blog"]
+const settings = ["Profile", "Logout"]
 
-const VibeAppBar = (props) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+const VibeAppBar = props => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null)
+  const [anchorElUser, setAnchorElUser] = React.useState(null)
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const handleOpenNavMenu = event => {
+    setAnchorElNav(event.currentTarget)
+  }
+  const handleOpenUserMenu = event => {
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    setAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
   return (
     <AppBar position="static" style={{ background: "#ff000052" }}>
       <Container maxWidth="xl">
@@ -47,8 +47,54 @@ const VibeAppBar = (props) => {
           >
             VIBE
           </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {props.loggedIn ? (
+                <MenuItem key="Create" onClick={() => props.setCurrentTab("Create")}>
+                  <Typography textAlign="center">Create Playlist</Typography>
+                </MenuItem>
+              ) : null}
+              <MenuItem key="About" onClick={() => props.setCurrentTab("About")}>
+                <Typography textAlign="center">About</Typography>
+              </MenuItem>
+              <MenuItem key="History" onClick={() => props.setCurrentTab("History")}>
+                <Typography textAlign="center">History</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button key="Home" sx={{ my: 2, color: "white", display: "block" }} onClick={() => props.setCurrentTab("Home")}>
+            <Button
+              key="Home"
+              sx={{ my: 2, color: "white", display: "block" }}
+              onClick={() => props.setCurrentTab("Home")}
+            >
               Home
             </Button>
             {props.loggedIn ? (
@@ -119,6 +165,6 @@ const VibeAppBar = (props) => {
         </Toolbar>
       </Container>
     </AppBar>
-  );
-};
-export default VibeAppBar;
+  )
+}
+export default VibeAppBar
