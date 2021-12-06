@@ -12,7 +12,9 @@ import Button from "@mui/material/Button"
 import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
 import { deepOrange, deepPurple } from "@mui/material/colors"
-//import LoginIcon from "@mui/icons-material/Login";
+// import { Link } from "react-router-dom"
+import { Link } from "@mui/material"
+import LoginIcon from "@mui/icons-material/Login"
 
 const pages = ["Products", "Pricing", "Blog"]
 const settings = ["Profile", "Logout"]
@@ -76,6 +78,9 @@ const VibeAppBar = props => {
                 display: { xs: "block", md: "none" },
               }}
             >
+              <MenuItem key="Home" onClick={() => props.setCurrentTab("About")}>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
               {props.loggedIn ? (
                 <MenuItem key="Create" onClick={() => props.setCurrentTab("Create")}>
                   <Typography textAlign="center">Create Playlist</Typography>
@@ -148,15 +153,19 @@ const VibeAppBar = props => {
                 <MenuItem key="editProfile">
                   <Typography textAlign="center">Edit Profile</Typography>
                 </MenuItem>
-                <MenuItem key="logout" onClick={props.logout}>
-                  <Typography textAlign="center">Logout</Typography>
+                <MenuItem component={Link} key="logout" onClick={props.logout} to="/">
+                  <Typography textAlign="center">
+                    <Link href="/" underline="none" color="black">
+                      Logout
+                    </Link>
+                  </Typography>
                 </MenuItem>
               </Menu>
             </Box>
           ) : (
             <Box>
               <Tooltip title="Login">
-                <Button sx={{ p: 0 }} onClick={props.login}>
+                <Button sx={{ p: 0, color: "white" }} onClick={props.login}>
                   Login
                 </Button>
               </Tooltip>

@@ -35,14 +35,14 @@ export default function App() {
   function HomeScreen() {
     return (
       <>
-        {!auth_token ? (
-          user ? (
+        {user ? (
+          !auth_token ? (
             <Home loggedIn={true} spotifyLogin={loginUrl} spotifyAuth={false} />
           ) : (
-            <Home loggedIn={false} login={SignIn} spotifyAuth={false} />
+            <Redirect to="/CreatePlaylist" />
           )
         ) : (
-          <Redirect to="/CreatePlaylist" />
+          <Home loggedIn={false} login={SignIn} spotifyAuth={false} />
         )}
       </>
     )
@@ -69,6 +69,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route path="/home" component={HomeScreen} />
+          {user ? <Route path="/CreatePlaylist" component={CreatePlaylist} /> : null}
         </Switch>
       </Router>
     </>
