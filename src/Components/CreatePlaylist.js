@@ -50,7 +50,6 @@ export default function DiscreteSlider() {
         <Typography color="white" variant="h2" gutterBottom>
           Select Your Type of Music
         </Typography>
-        <img src={RecordPlayer} alt="loading..." />
       </Box>
 
       <Typography color="white" gutterBottom>
