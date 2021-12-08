@@ -3,15 +3,16 @@ import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
 import { Typography } from "@mui/material"
 import RecordPlayer from "./record.gif"
+import RecommendationsList from "./Recommendations/RecommendationsList"
 
 export default function DiscreteSlider() {
-  const [dancibility, setDancibility] = React.useState(50)
+  const [danceability, setDanceability] = React.useState(50)
   const [valence, setValence] = React.useState(50)
   const [tempo, setTempo] = React.useState(50)
   const [energy, setEnergy] = React.useState(50)
 
-  const handleChangeDancibility = (event, newValue) => {
-    setDancibility(newValue)
+  const handleChangeDanceability = (event, newValue) => {
+    setDanceability(newValue)
   }
 
   const handleChangeValence = (event, newValue) => {
@@ -54,17 +55,17 @@ export default function DiscreteSlider() {
       </Box>
 
       <Typography color="white" gutterBottom>
-        Dancibility
+        Danceability
       </Typography>
       <Slider
         aria-label="Temperature"
         defaultValue={50}
-        onChange={handleChangeDancibility}
+        onChange={handleChangeDanceability}
         valueLabelDisplay="auto"
-        step={10}
+        step={1}
         marks
         min={0}
-        max={100}
+        max={99}
       />
       <Typography color="white" gutterBottom>
         Valence
@@ -74,10 +75,10 @@ export default function DiscreteSlider() {
         defaultValue={50}
         onChange={handleChangeValence}
         valueLabelDisplay="auto"
-        step={10}
+        step={1}
         marks
         min={0}
-        max={100}
+        max={99}
       />
       <Typography color="white" gutterBottom>
         Tempo
@@ -87,10 +88,10 @@ export default function DiscreteSlider() {
         defaultValue={50}
         onChange={handleChangeTempo}
         valueLabelDisplay="auto"
-        step={10}
+        step={1}
         marks
         min={0}
-        max={100}
+        max={99}
       />
       <Typography color="white" gutterBottom>
         Energy
@@ -100,11 +101,12 @@ export default function DiscreteSlider() {
         defaultValue={50}
         onChange={handleChangEnergy}
         valueLabelDisplay="auto"
-        step={10}
+        step={1}
         marks
         min={0}
-        max={100}
+        max={99}
       />
+    <RecommendationsList danceability={danceability} valence={valence} tempo={tempo} energy={energy}/>
     </Box>
   )
 }
