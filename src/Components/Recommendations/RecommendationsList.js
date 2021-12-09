@@ -80,7 +80,7 @@ export default function RecommendationsList(props) {
 
   return (
       //TODO
-      //list element that displays all the urls of songs
+      //list element that displays all the urls and names of songs
     <div>
       Estimate Age: {data.href}
     </div>
