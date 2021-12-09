@@ -56,6 +56,7 @@ export default function RecommendationsList(props) {
     .then((r) => r.json())
     .then((r) => setData(r));
 
+    //needs spotify user import
   }, [user]);
 
   useEffect(() => {
