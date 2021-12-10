@@ -1,5 +1,7 @@
 import React from "react"
 import { Box, Button, Typography } from "@mui/material"
+import logo from "./vibe.png"
+import "../App.css"
 
 function Welcome(props) {
   return (
@@ -11,12 +13,10 @@ function Welcome(props) {
         alignItems: "center",
       }}
     >
-      <Typography variant="h1" color="primary" sx={{ m: 10 }}>
+      <Typography variant="h1" color="primary" sx={{ m: 10, textAlign: "center" }}>
         Welcome to Vibe{" "}
       </Typography>
-      <Button variant="contained" color="primary" onClick={props.login}>
-        Login
-      </Button>
+      <img src={logo} alt="loading..." class="recordImg" />
     </Box>
   )
 }

@@ -2,8 +2,7 @@
 
 .App {
   font-family: "Inconsolata", monospace;
-  background-color: black;
-  color: black;
+  background-color: #11090a;
   text-align: center;
 }
 
@@ -16,6 +15,11 @@
   font-size: calc(20px + 2vmin);
   color: white;
   font-weight: 1000;
+}
+
+.recordImg {
+  width: 50%;
+  height: 75%;
 }
 
 .Sign-in-button {
@@ -33,7 +37,7 @@
 }
 
 .Sign-in-button:hover {
-  background-color: black;
+  background-color: white;
 }
 
 .Sign-out-button {
@@ -56,7 +60,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: white;
 }
 
 .App-link {
