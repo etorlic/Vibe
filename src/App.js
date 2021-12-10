@@ -1,13 +1,14 @@
 import "./App.css"
 import { SignIn, SignOut, useAuthentication } from "./services/authService.js"
-import ProfileCard from "./Components/ProfileCard"
-import LoginToSpotify from "./Components/LoginToSpotify"
 import VibeAppBar from "./Components/VibeAppBar"
-import CreatePlaylist from "./Components/CreatePlaylist"
 import { useEffect, useState } from "react"
-import Home from "./Components/Home"
+import Welcome from "./Components/Welcome"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom"
-import { authEndpoint, clientId, redirectUri, scopes, loginUrl } from "./services/spotify"
+import { getDoc, doc } from "firebase/firestore"
+import { db } from "./firebaseConfig"
+import { AddUserInfo } from "./services/profileService"
+import DisplayMovie from "./Components/DisplayMovie"
+import EditMovie from "./Components/EditMovie"
 
 const hash = window.location.hash
   .substring(1)
@@ -22,54 +23,37 @@ const hash = window.location.hash
 
 export default function App() {
   const user = useAuthentication()
-  const [currentTab, setCurrentTab] = useState("Home")
-  const [auth_token, setToken] = useState()
   useEffect(() => {
-    let token = hash.access_token
-    if (token) {
-      setToken(token)
-      console.log(token)
+    if (user) {
+      getDoc(doc(db, "Users", user.uid))
+        .then(doc => {
+          if (doc.exists()) {
+            console.log("Document data:", doc.data())
+          } else {
+            AddUserInfo(user.displayName, [], user.uid)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
-  }, [])
-
-  function HomeScreen() {
-    return (
-      <>
-        {user ? (
-          !auth_token ? (
-            <Home loggedIn={true} spotifyLogin={loginUrl} spotifyAuth={false} />
-          ) : (
-            <Redirect to="/CreatePlaylist" />
-          )
-        ) : (
-          <Home loggedIn={false} login={SignIn} spotifyAuth={false} />
-        )}
-      </>
-    )
-  }
+  }, [user])
 
   return (
     <>
       <Router>
         {!user ? (
-          <VibeAppBar
-            loggedIn={false}
-            login={SignIn}
-            logout={SignOut}
-            setCurrentTab={setCurrentTab}
-          />
+          <VibeAppBar loggedIn={false} login={SignIn} logout={SignOut} />
         ) : (
-          <VibeAppBar
-            loggedIn={true}
-            login={SignIn}
-            logout={SignOut}
-            setCurrentTab={setCurrentTab}
-          />
+          <VibeAppBar loggedIn={true} login={SignIn} logout={SignOut} />
         )}
         <Switch>
-          <Route exact path="/" component={HomeScreen} />
-          <Route path="/home" component={HomeScreen} />
-          {user ? <Route path="/CreatePlaylist" component={CreatePlaylist} /> : null}
+          <Route exact path="/" component={Welcome} />
+          <Route path="/home" component={Welcome} />
+
+          {user ? <Route path="/DisplayMovie" component={DisplayMovie} /> : null}
+          {user ? <Route path="/EditMovie" component={EditMovie} /> : null}
+          {user ? <Route path="/About" component={null} /> : null}
         </Switch>
       </Router>
     </>
