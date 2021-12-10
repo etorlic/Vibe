@@ -66,7 +66,7 @@ export default function DiscreteSlider() {
         max={100}
       />
       <Typography color="white" gutterBottom>
-        Valence
+        Cheerful
       </Typography>
       <Slider
         aria-label="Temperature"
