@@ -26,7 +26,7 @@ export default function DisplayMovie() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
-          "x-rapidapi-key": "cf8094ad0bmsh6e650a080c056aap188d61jsn6eb1260e61fa",
+          "x-rapidapi-key": "51995aef3bmshd95e4fae4e0f566p1fea43jsn408acb0d7f65",
         },
       }
     )
