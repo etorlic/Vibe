@@ -24,7 +24,7 @@ export default function EditGenre() {
       color="white"
       sx={{
         width: "50vw",
-        height: "100vh",
+        height: "90vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -69,7 +69,9 @@ export default function EditGenre() {
           label="Adventure"
         />
       </FormGroup>
-      <Button variant="contained">Update Genres</Button>
+      <Button id="submitButton" variant="contained">
+        Update Genres
+      </Button>
     </Box>
   )
 }

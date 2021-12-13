@@ -106,7 +106,7 @@ export default function EditMovie() {
           label="Amazon Prime Video"
         />
       </FormGroup>
-      <Button variant="contained" onClick={updateStream}>
+      <Button id="submitButton" variant="contained" onClick={updateStream}>
         Update Streaming Service
       </Button>
     </Box>

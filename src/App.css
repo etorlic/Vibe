@@ -43,7 +43,7 @@
 .Sign-out-button {
   color: white;
   text-align: left;
-  background-color: #ff000036;
+  background-color: #7754d6;
   border: 2px solid #ff000052;
   margin-top: 24px;
   padding: 18px 36px;
@@ -59,9 +59,13 @@
   background-color: black;
 }
 
-html,
 body {
-  background-image: linear-gradient(rgb(77, 0, 150), rgb(85, 57, 57));
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(77, 0, 150), rgb(110, 63, 63));
+  overflow: hidden;
+}
+
+html {
   height: 100%;
 }
 
@@ -86,4 +90,15 @@ body {
 #welcomeScreen,
 #link {
   color: rgb(255, 255, 255);
+}
+
+#submitButton {
+  background-color: rgba(70, 0, 199, 0.384);
+  border: 1px solid rgb(0, 0, 0);
+  padding: 14px 20px;
+}
+
+#profileIcon {
+  background-color: rgba(70, 0, 199, 0.384);
+  border: 1px solid black;
 }

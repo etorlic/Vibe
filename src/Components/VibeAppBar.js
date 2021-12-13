@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
-import { deepOrange, deepPurple } from "@mui/material/colors"
+import { blueGrey, deepOrange, deepPurple } from "@mui/material/colors"
 import { Link } from "react-router-dom"
 // import { Link } from "@mui/material"
 import LoginIcon from "@mui/icons-material/Login"
@@ -148,7 +148,7 @@ const VibeAppBar = props => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton sx={{ p: 0 }} onClick={handleOpenUserMenu}>
-                  <Avatar sx={{ bgcolor: deepOrange[500] }}></Avatar>
+                  <Avatar id="profileIcon" sx={{ bgcolor: "#7754d6" }}></Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
