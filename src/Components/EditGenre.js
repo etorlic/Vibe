@@ -21,6 +21,7 @@ export default function EditGenre() {
 
   return (
     <Box
+      color="white"
       sx={{
         width: "50vw",
         height: "100vh",

@@ -76,6 +76,7 @@ export default function EditMovie() {
   }
   return (
     <Box
+      color="white"
       sx={{
         width: "50vw",
         height: "100vh",

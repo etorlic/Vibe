@@ -8,6 +8,7 @@ function Welcome(props) {
   return (
     <>
       <Box
+        id="welcomeScreen"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -15,7 +16,7 @@ function Welcome(props) {
           alignItems: "center",
         }}
       >
-        <Typography variant="h1" color="primary" sx={{ mt: 15, textAlign: "center" }}>
+        <Typography id="welcomeHeading" variant="h1" sx={{ mt: 15, textAlign: "center" }}>
           Welcome to Vibe{" "}
         </Typography>
         <Typography
@@ -32,18 +33,29 @@ function Welcome(props) {
         </Typography>
         <Typography variant="h6" sx={{ mt: 10, textAlign: "center" }}>
           Display the movies/tv shows available with your given genres and streaming
-          services at <Link to="/DisplayMovie">Display Movie</Link>
+          services at{" "}
+          <Link id="link" to="/DisplayMovie">
+            Display Movie
+          </Link>
         </Typography>
         <Typography variant="h6" sx={{ m: "5px", textAlign: "center" }}>
           Select the genres you are interested in browsing at{" "}
-          <Link to="/EditGenre">Select Genre</Link>
+          <Link id="link" to="/EditGenre">
+            Select Genre
+          </Link>
         </Typography>
         <Typography variant="h6" sx={{ m: "5px", textAlign: "center" }}>
           Edit the streaming services you are subscribed to at{" "}
-          <Link to="/EditMovie">Edit Streaming Services</Link>
+          <Link id="link" to="/EditMovie">
+            Edit Streaming Services
+          </Link>
         </Typography>
         <Typography variant="h6" sx={{ m: "5px", textAlign: "center" }}>
-          Learn more about us at <Link to="/About">About</Link>!
+          Learn more about us at{" "}
+          <Link id="link" to="/About">
+            About
+          </Link>
+          !
         </Typography>
       </Box>
     </>

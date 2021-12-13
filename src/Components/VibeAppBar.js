@@ -38,7 +38,7 @@ const VibeAppBar = props => {
     setAnchorElUser(null)
   }
   return (
-    <AppBar position="static" style={{ background: "" }}>
+    <AppBar id="topBar" position="static" style={{ background: "" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
