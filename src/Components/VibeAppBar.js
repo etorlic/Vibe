@@ -116,6 +116,11 @@ const VibeAppBar = props => {
               </Button>
             ) : null}
             {props.loggedIn ? (
+                <MenuItem key="EditGenre" component={Link} to="/EditGenre">
+                  <Typography textAlign="center">Select Genre</Typography>
+                </MenuItem>
+              ) : null}
+            {props.loggedIn ? (
               <Button
                 key="EditMovie"
                 sx={{ my: 2, color: "white", display: "block" }}

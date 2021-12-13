@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-// import { useEffect, useState } from "react"
-
-// import Box from "@mui/material/Box"
-// import Slider from "@mui/material/Slider"
-// import { Typography } from "@mui/material"
-// import RecordPlayer from "./record.gif"
-// import "../App.css"
-
-// import {
-//   authEndpoint,
-//   clientId,
-//   redirectUri,
-//   scopes,
-//   loginUrl,
-// } from "../services/spotify"
-// import { Button } from "@mui/material"
-=======
 import * as React from "react"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
@@ -32,7 +14,6 @@ export default function DiscreteSlider() {
   const handleChangeDanceability = (event, newValue) => {
     setDanceability(newValue)
   }
->>>>>>> 111c9e44965b4b428097e00646bdcf52eee96a96
 
 // const hash = window.location.hash
 //   .substring(1)

@@ -9,6 +9,7 @@ import { db } from "./firebaseConfig"
 import { AddUserInfo } from "./services/profileService"
 import DisplayMovie from "./Components/DisplayMovie"
 import EditMovie from "./Components/EditMovie"
+import EditGenre from "./Components/EditGenre"
 
 const hash = window.location.hash
   .substring(1)
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/home" component={Welcome} />
 
           {user ? <Route path="/DisplayMovie" component={DisplayMovie} /> : null}
+          {user ? <Route path="/EditGenre" component={EditGenre} /> : null}
           {user ? <Route path="/EditMovie" component={EditMovie} /> : null}
           {user ? <Route path="/About" component={null} /> : null}
         </Switch>
