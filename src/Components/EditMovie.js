@@ -82,11 +82,13 @@ export default function EditMovie() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         margin: "auto",
       }}
     >
-      <Typography variant="h4"> Select Streaming Services</Typography>
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
+        Select Streaming Services
+      </Typography>
       <FormGroup>
         <FormControlLabel
           control={<Checkbox onChange={handleDisney} />}

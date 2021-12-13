@@ -3,6 +3,7 @@ import { SignIn, SignOut, useAuthentication } from "./services/authService.js"
 import VibeAppBar from "./Components/VibeAppBar"
 import { useEffect, useState } from "react"
 import Welcome from "./Components/Welcome"
+import About from "./Components/About"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom"
 import { getDoc, doc } from "firebase/firestore"
 import { db } from "./firebaseConfig"
@@ -55,7 +56,7 @@ export default function App() {
           {user ? <Route path="/DisplayMovie" component={DisplayMovie} /> : null}
           {user ? <Route path="/EditGenre" component={EditGenre} /> : null}
           {user ? <Route path="/EditMovie" component={EditMovie} /> : null}
-          {user ? <Route path="/About" component={null} /> : null}
+          {user ? <Route path="/About" component={About} /> : null}
         </Switch>
       </Router>
     </>

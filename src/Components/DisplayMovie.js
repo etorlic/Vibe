@@ -83,52 +83,47 @@ export default function DisplayMovie() {
             </TableHead>
 
             <TableBody>
-              {Object.entries(movieRec).map(([provider, movie]) => {
-                return movie.map(movieInfo => {
-                  return (
-                    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                      <TableCell
-                        key={movieInfo.title + provider}
-                        component="th"
-                        scope="row"
-                      >
-                        {movieInfo.title}
-                      </TableCell>
-                      <TableCell
-                        key={movieInfo.title + "poster"}
-                        component="th"
-                        scope="row"
-                        align="center"
-                      >
-                        <a href={movieInfo.posterURLs.original}>
-                          <img
-                            alt="Qries"
-                            src={movieInfo.posterURLs.original}
-                            width="20%"
-                            height="20%"
-                          />
-                        </a>
-                      </TableCell>
-                      <TableCell
-                        key={movieInfo.title + "imdb"}
-                        component="th"
-                        scope="row"
-                        align="center"
-                      >
-                        {movieInfo.imdbRating}
-                      </TableCell>
-                      <TableCell key={movieInfo.title + "streamlink"} align="right">
-                        <a href={movieInfo.streamingInfo[provider].us.link}>
-                          {movieInfo.streamingInfo[provider].us.link}
-                        </a>
-                      </TableCell>
-                      <TableCell key={movieInfo.title + "stream"} align="right">
-                        {provider.toUpperCase()}
-                      </TableCell>
-                    </TableRow>
-                  )
-                })
+              {Object.entries(movieRec).map(([movie, provider]) => {
+                return (
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell key={movie.title + provider} component="th" scope="row">
+                      {movie.title}
+                    </TableCell>
+                    <TableCell
+                      key={movie.title + "poster"}
+                      component="th"
+                      scope="row"
+                      align="center"
+                    >
+                      <a href={movie.posterURLs}>
+                        <img
+                          alt="Qries"
+                          src={movie.posterURLs}
+                          width="20%"
+                          height="20%"
+                        />
+                      </a>
+                    </TableCell>
+                    <TableCell
+                      key={movie.title + "imdb"}
+                      component="th"
+                      scope="row"
+                      align="center"
+                    >
+                      {movie.imdbRating}
+                    </TableCell>
+                    <TableCell key={movie.title + "streamlink"} align="right">
+                      <a href={movie.streamingInfo[provider].us.link}>
+                        {movie.streamingInfo[provider].us.link}
+                      </a>
+                    </TableCell>
+                    <TableCell key={movie.title + "stream"} align="right">
+                      {provider.toUpperCase()}
+                    </TableCell>
+                  </TableRow>
+                )
               })}
+              )
             </TableBody>
           </Table>
         </TableContainer>
