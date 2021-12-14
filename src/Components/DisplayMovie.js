@@ -8,6 +8,10 @@ import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import TableCell from "@mui/material/TableCell"
 import TableBody from "@mui/material/TableBody"
+import EditGenre from "./EditGenre"
+
+
+
 
 export default function DisplayMovie() {
   const user = useAuthentication()
@@ -18,10 +22,11 @@ export default function DisplayMovie() {
   const [primeRec, setPrimeRec] = useState([])
   const [hboRec, setHboRec] = useState([])
   const [movieRec, setMovieRec] = useState({})
+  const genre = 1
 
   const getMovieRec = provider => {
     return fetch(
-      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&page=1&output_language=en&language=en`,
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&genre=${genre}&page=1&output_language=en&language=en`,
       {
         method: "GET",
         headers: {
@@ -83,53 +88,58 @@ export default function DisplayMovie() {
             </TableHead>
 
             <TableBody>
-              {Object.entries(movieRec).map(([movie, provider]) => {
-                return (
-                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                    <TableCell key={movie.title + provider} component="th" scope="row">
-                      {movie.title}
-                    </TableCell>
-                    <TableCell
-                      key={movie.title + "poster"}
-                      component="th"
-                      scope="row"
-                      align="center"
-                    >
-                      <a href={movie.posterURLs}>
-                        <img
-                          alt="Qries"
-                          src={movie.posterURLs}
-                          width="20%"
-                          height="20%"
-                        />
-                      </a>
-                    </TableCell>
-                    <TableCell
-                      key={movie.title + "imdb"}
-                      component="th"
-                      scope="row"
-                      align="center"
-                    >
-                      {movie.imdbRating}
-                    </TableCell>
-                    <TableCell key={movie.title + "streamlink"} align="right">
-                      <a href={movie.streamingInfo[provider].us.link}>
-                        {movie.streamingInfo[provider].us.link}
-                      </a>
-                    </TableCell>
-                    <TableCell key={movie.title + "stream"} align="right">
-                      {provider.toUpperCase()}
-                    </TableCell>
-                  </TableRow>
-                )
+              {Object.entries(movieRec).map(([provider, movie]) => {
+                return movie.map(movieInfo => {
+                  return (
+                    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                      <TableCell
+                        key={movieInfo.title + provider}
+                        component="th"
+                        scope="row"
+                      >
+                        {movieInfo.title}
+                      </TableCell>
+                      <TableCell
+                        key={movieInfo.title + "poster"}
+                        component="th"
+                        scope="row"
+                        align="center"
+                      >
+                        <a href={movieInfo.posterURLs.original}>
+                          <img
+                            alt="Qries"
+                            src={movieInfo.posterURLs.original}
+                            width="20%"
+                            height="20%"
+                          />
+                        </a>
+                      </TableCell>
+                      <TableCell
+                        key={movieInfo.title + "imdb"}
+                        component="th"
+                        scope="row"
+                        align="center"
+                      >
+                        {movieInfo.imdbRating}
+                      </TableCell>
+                      <TableCell key={movieInfo.title + "streamlink"} align="right">
+                        <a href={movieInfo.streamingInfo[provider].us.link}>
+                          {movieInfo.streamingInfo[provider].us.link}
+                        </a>
+                      </TableCell>
+                      <TableCell key={movieInfo.title + "stream"} align="right">
+                        {provider.toUpperCase()}
+                      </TableCell>
+                    </TableRow>
+                  )
+                })
               })}
-              )
             </TableBody>
           </Table>
         </TableContainer>
       ) : (
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-          Text only
+          Loading...
         </Typography>
       )}
     </>
