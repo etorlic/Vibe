@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useAuthentication } from "../services/authService.js"
 
 import Box from "@mui/material/Box"
 import FormGroup from "@mui/material/FormGroup"
@@ -7,18 +8,101 @@ import Checkbox from "@mui/material/Checkbox"
 import Typography from "@mui/material/Typography"
 import { Button } from "@mui/material"
 
-export default function EditGenre() {
-  const [genre, setGenre] = useState(1)
 
-  function handleOnChange(e) {
-    console.log("selected option", e.target.value)
-    setGenre(e.target.value)
+
+
+
+export default function EditGenre() {
+  const user = useAuthentication()
+  const [biography, setBiography] = useState(false)
+  const [filmNoir, setFilmNoir] = useState(false)
+  const [gameShow, setGameShow] = useState(false)
+  const [musical, setMusical] = useState(false)
+  const [sport, setSport] = useState(false)
+  const [short, setShort] = useState(false)
+  const [adult, setAdult] = useState(false)
+  const [adventure, setAdventure] = useState(false)
+
+
+  const handleBiography = () => {
+    if (biography) {
+      setBiography(false)
+    } else {
+      setBiography(true)
+    }
+  }
+  const handleFilmNoir = () => {
+    if (filmNoir) {
+      setFilmNoir(false)
+    } else {
+      setFilmNoir(true)
+    }
+  }
+  const handleGameShow = () => {
+    if (gameShow) {
+      setGameShow(false)
+    } else {
+      setGameShow(true)
+    }
+  }
+  const handleMusical = () => {
+    if (musical) {
+      setMusical(false)
+    } else {
+      setMusical(true)
+    }
+  }
+  const handleSport = () => {
+    if (sport) {
+      setSport(false)
+    } else {
+      setSport(true)
+    }
+  }
+  const handleShort = () => {
+    if (short) {
+      setShort(false)
+    } else {
+      setShort(true)
+    }
   }
 
-  useEffect(() => {
-    setGenre(genre)
-  }, [genre])
+  const handleAdult = () => {
+    if (adult) {
+      setAdult(false)
+    } else {
+      setAdult(true)
+    }
+  }
 
+  const handleAdventure = () => {
+    if (adventure) {
+      setAdventure(false)
+    } else {
+      setAdventure(true)
+    }
+  }
+
+  const updateStream = () => {
+    console.log("here")
+    const result = []
+    if (biography) {
+      result.push("1")
+    }
+    if (filmNoir) {
+      result.push("2")
+    }
+    if (gameShow) {
+      result.push("3")
+    }
+    if (musical) {
+      result.push("4")
+    }
+    if (sport) {
+      result.push("5")
+    }
+    //EditUserInfo(user.displayName, result, user.uid)
+  }
   return (
     <Box
       color="white"
@@ -37,40 +121,40 @@ export default function EditGenre() {
       </Typography>
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleBiography} />}
           label="Biography"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleFilmNoir} />}
           label="Film Noir"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleGameShow} />}
           label="Game Show"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleMusical} />}
           label="Musical"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleSport} />}
           label="Sport"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleShort} />}
           label="Short"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleAdult} />}
           label="Adult"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleOnChange} />}
+          control={<Checkbox onChange={handleAdventure} />}
           label="Adventure"
         />
       </FormGroup>
-      <Button id="submitButton" variant="contained">
-        Update Genres
+      <Button id="submitButton" variant="contained" onClick={updateStream}>
+        Update Streaming Service
       </Button>
     </Box>
   )
