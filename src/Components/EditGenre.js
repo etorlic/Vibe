@@ -101,7 +101,7 @@ export default function EditGenre() {
     if (sport) {
       result.push("5")
     }
-    //EditUserInfo(user.displayName, result, user.uid)
+    EditUserInfo(user.displayName, provider, result, user.uid)
   }
   return (
     <Box
