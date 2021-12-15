@@ -7,10 +7,20 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 import Typography from "@mui/material/Typography"
 import { Button } from "@mui/material"
-import { EditUserInfo } from "../services/profileService"
+import { EditUserInfo, getUserInfo } from "../services/profileService"
 
 export default function EditMovie() {
   const user = useAuthentication()
+  const [userGenre, setUserGenre] = useState([])
+  useEffect(() => {
+    if (user) {
+      getUserInfo(user.uid).then(docSnap => {
+        const genre = docSnap.data()["Genre"]
+        setUserGenre(genre)
+      })
+    }
+  }, [user])
+
   const [disney, setDisney] = useState(false)
   const [hulu, setHulu] = useState(false)
   const [netflix, setNetflix] = useState(false)
@@ -72,7 +82,9 @@ export default function EditMovie() {
       result.push("prime")
     }
 
-    EditUserInfo(user.displayName, result, genre, user.uid)
+
+
+    EditUserInfo(user.displayName, result, userGenre, user.uid)
   }
   return (
     <Box
