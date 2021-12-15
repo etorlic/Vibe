@@ -105,7 +105,7 @@ export default function DisplayMovie() {
   useEffect(() => {
     const promise = []
 
-    if (userStreaming.length > 0 && userGenre == null) {
+    if (userStreaming.length > 0 && userGenre.length == 0) {
       for (let i = 0; i < userStreaming.length; i++) {
         promise.push(getMovieRecP(userStreaming[i]))
       }
@@ -121,7 +121,7 @@ export default function DisplayMovie() {
       })
     }
 
-    else if (userStreaming == null && userGenre.length > 0) {
+    else if (userStreaming.length == 0 && userGenre.length > 0) {
       for (let i = 0; i < userStreaming.length; i++) {
         for (let j = 0; j < userGenre.length; j++) {
           promise.push(getMovieRecPG(userStreaming[i], userGenre[j]))
@@ -172,6 +172,7 @@ export default function DisplayMovie() {
             </TableHead>
 
             <TableBody>
+                  //also need it to do genre if there is no provider
               {Object.entries(movieRec).map(([provider, movie]) => {
                 return movie.map(movieInfo => {
                   return (
