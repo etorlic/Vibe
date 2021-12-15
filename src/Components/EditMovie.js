@@ -72,7 +72,7 @@ export default function EditMovie() {
       result.push("prime")
     }
 
-    EditUserInfo(user.displayName, result, user.uid)
+    EditUserInfo(user.displayName, result, genre, user.uid)
   }
   return (
     <Box
