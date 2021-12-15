@@ -16,15 +16,61 @@ import EditGenre from "./EditGenre"
 export default function DisplayMovie() {
   const user = useAuthentication()
   const [userStreaming, setUserStreaming] = useState([])
+  const [userGenre, setUserGenre] = useState([])
   const [huluRec, setHuluRec] = useState([])
   const [netflixRec, setNetflixRec] = useState([])
   const [disneyRec, setDisneyRec] = useState([])
   const [primeRec, setPrimeRec] = useState([])
   const [hboRec, setHboRec] = useState([])
   const [movieRec, setMovieRec] = useState({})
-  const genre = 1
 
-  const getMovieRec = provider => {
+  const getMovieRecP = provider => {
+    return fetch(
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&page=1&output_language=en&language=en`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
+          "x-rapidapi-key": "51995aef3bmshd95e4fae4e0f566p1fea43jsn408acb0d7f65",
+        },
+      }
+    )
+      .then(response => {
+        return response.json().then(data => {
+          const currentMovies = {}
+          currentMovies[provider] = data.results
+          return currentMovies
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  const getMovieRecG = genre => {
+    return fetch(
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&type=movie&genre=${genre}&page=1&output_language=en&language=en`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
+          "x-rapidapi-key": "51995aef3bmshd95e4fae4e0f566p1fea43jsn408acb0d7f65",
+        },
+      }
+    )
+      .then(response => {
+        return response.json().then(data => {
+          const currentMovies = {}
+          currentMovies[genre] = data.results
+          return currentMovies
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  const getMovieRecPG = (provider, genre) => {
     return fetch(
       `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&genre=${genre}&page=1&output_language=en&language=en`,
       {
@@ -46,19 +92,23 @@ export default function DisplayMovie() {
         console.error(err)
       })
   }
+
   useEffect(() => {
     if (user) {
       getUserInfo(user.uid).then(docSnap => {
         const streaming = docSnap.data()["Streaming"]
         setUserStreaming(streaming)
+        const currentGenre = docSnap.data()["Genre"]
+        setUserGenre(currentGenre)
       })
     }
   }, [user])
   useEffect(() => {
     const promise = []
-    if (userStreaming.length > 0) {
+
+    if (userStreaming.length > 0 && userGenre == null) {
       for (let i = 0; i < userStreaming.length; i++) {
-        promise.push(getMovieRec(userStreaming[i]))
+        promise.push(getMovieRecP(userStreaming[i]))
       }
       Promise.all(promise).then(data => {
         const totalMovieData = {}
@@ -71,6 +121,41 @@ export default function DisplayMovie() {
         setMovieRec(totalMovieData)
       })
     }
+
+    else if (userStreaming == null && userGenre.length > 0) {
+      for (let i = 0; i < userStreaming.length; i++) {
+        for (let j = 0; j < userGenre.length; j++) {
+          promise.push(getMovieRecPG(userStreaming[i], userGenre[j]))
+        }
+      }
+      Promise.all(promise).then(data => {
+        const totalMovieData = {}
+        data.map(currentGenre => {
+          Object.entries(currentGenre).map(([genre, movie]) => {
+            totalMovieData[genre] = movie
+          })
+        })
+        console.log(totalMovieData)
+        setMovieRec(totalMovieData)
+      })
+    }
+
+    else if (userStreaming.length > 0 && userGenre.length > 0) {
+      for (let i = 0; i < userStreaming.length; i++) {
+        promise.push(getMovieRecP(userStreaming[i]))
+      }
+      Promise.all(promise).then(data => {
+        const totalMovieData = {}
+        data.map(streamService => {
+          Object.entries(streamService).map(([provider, movie]) => {
+            totalMovieData[provider] = movie
+          })
+        })
+        console.log(totalMovieData)
+        setMovieRec(totalMovieData)
+      })
+    }
+
   }, [userStreaming])
   return (
     <>
