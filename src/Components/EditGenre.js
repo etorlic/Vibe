@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react"
 import { useAuthentication } from "../services/authService.js"
 
+
+import { EditUserInfo, getUserInfo } from "../services/profileService"
+
+
+
+
 import Box from "@mui/material/Box"
 import FormGroup from "@mui/material/FormGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
@@ -14,6 +20,16 @@ import { Button } from "@mui/material"
 
 export default function EditGenre() {
   const user = useAuthentication()
+  const [userStreaming, setUserStreaming] = useState([])
+  useEffect(() => {
+    if (user) {
+      getUserInfo(user.uid).then(docSnap => {
+        const streaming = docSnap.data()["Streaming"]
+        setUserStreaming(streaming)
+      })
+    }
+  }, [user])
+
   const [biography, setBiography] = useState(false)
   const [filmNoir, setFilmNoir] = useState(false)
   const [gameShow, setGameShow] = useState(false)
@@ -101,7 +117,8 @@ export default function EditGenre() {
     if (sport) {
       result.push("5")
     }
-    EditUserInfo(user.displayName, provider, result, user.uid)
+
+    EditUserInfo(user.displayName, userStreaming, result, user.uid)
   }
   return (
     <Box
