@@ -20,6 +20,8 @@
 .recordImg {
   width: 50%;
   height: 75%;
+  border-radius: 10%;
+  opacity: 80%;
 }
 
 .Sign-in-button {

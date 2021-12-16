@@ -1,6 +1,6 @@
 import React from "react"
 import { Box, Button, Typography } from "@mui/material"
-import logo from "./vibe.png"
+import logo from "./movie.gif"
 import "../App.css"
 
 function Welcome(props) {
