@@ -1,19 +1,19 @@
-// import { useEffect, useState } from "react"
-
+// import * as React from "react"
 // import Box from "@mui/material/Box"
 // import Slider from "@mui/material/Slider"
 // import { Typography } from "@mui/material"
 // import RecordPlayer from "./record.gif"
-// import "../App.css"
+// import RecommendationsList from "./Recommendations/RecommendationsList"
 
-// import {
-//   authEndpoint,
-//   clientId,
-//   redirectUri,
-//   scopes,
-//   loginUrl,
-// } from "../services/spotify"
-// import { Button } from "@mui/material"
+// export default function DiscreteSlider() {
+//   const [danceability, setDanceability] = React.useState(50)
+//   const [valence, setValence] = React.useState(50)
+//   const [tempo, setTempo] = React.useState(50)
+//   const [energy, setEnergy] = React.useState(50)
+
+//   const handleChangeDanceability = (event, newValue) => {
+//     setDanceability(newValue)
+//   }
 
 // const hash = window.location.hash
 //   .substring(1)
@@ -235,5 +235,62 @@
 //         <LoginToSpotify login={loginUrl} />
 //       )}
 //     </>
+//   )
+// }
+
+//       <Typography color="white" gutterBottom>
+//         Danceability
+//       </Typography>
+//       <Slider
+//         aria-label="Temperature"
+//         defaultValue={50}
+//         onChange={handleChangeDanceability}
+//         valueLabelDisplay="auto"
+//         step={1}
+//         marks
+//         min={0}
+//         max={99}
+//       />
+//       <Typography color="white" gutterBottom>
+//         Cheerful
+//       </Typography>
+//       <Slider
+//         aria-label="Temperature"
+//         defaultValue={50}
+//         onChange={handleChangeValence}
+//         valueLabelDisplay="auto"
+//         step={1}
+//         marks
+//         min={0}
+//         max={99}
+//       />
+//       <Typography color="white" gutterBottom>
+//         Tempo
+//       </Typography>
+//       <Slider
+//         aria-label="Temperature"
+//         defaultValue={50}
+//         onChange={handleChangeTempo}
+//         valueLabelDisplay="auto"
+//         step={1}
+//         marks
+//         min={0}
+//         max={99}
+//       />
+//       <Typography color="white" gutterBottom>
+//         Energy
+//       </Typography>
+//       <Slider
+//         aria-label="Temperature"
+//         defaultValue={50}
+//         onChange={handleChangEnergy}
+//         valueLabelDisplay="auto"
+//         step={1}
+//         marks
+//         min={0}
+//         max={99}
+//       />
+//     <RecommendationsList danceability={danceability} valence={valence} tempo={tempo} energy={energy}/>
+//     </Box>
 //   )
 // }

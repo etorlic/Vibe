@@ -7,10 +7,20 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 import Typography from "@mui/material/Typography"
 import { Button } from "@mui/material"
-import { EditUserInfo } from "../services/profileService"
+import { EditUserInfo, getUserInfo } from "../services/profileService"
 
 export default function EditMovie() {
   const user = useAuthentication()
+  const [userGenre, setUserGenre] = useState([])
+  useEffect(() => {
+    if (user) {
+      getUserInfo(user.uid).then(docSnap => {
+        const genre = docSnap.data()["Genre"]
+        setUserGenre(genre)
+      })
+    }
+  }, [user])
+
   const [disney, setDisney] = useState(false)
   const [hulu, setHulu] = useState(false)
   const [netflix, setNetflix] = useState(false)
@@ -72,21 +82,26 @@ export default function EditMovie() {
       result.push("prime")
     }
 
-    EditUserInfo(user.displayName, result, user.uid)
+
+
+    EditUserInfo(user.displayName, result, userGenre, user.uid)
   }
   return (
     <Box
+      color="white"
       sx={{
         width: "50vw",
         height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         margin: "auto",
       }}
     >
-      <Typography variant="h4"> Select Streaming Services</Typography>
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
+        Select Streaming Services
+      </Typography>
       <FormGroup>
         <FormControlLabel
           control={<Checkbox onChange={handleDisney} />}
@@ -103,7 +118,7 @@ export default function EditMovie() {
           label="Amazon Prime Video"
         />
       </FormGroup>
-      <Button variant="contained" onClick={updateStream}>
+      <Button id="submitButton" variant="contained" onClick={updateStream}>
         Update Streaming Service
       </Button>
     </Box>
