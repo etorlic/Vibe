@@ -23,7 +23,7 @@ export default function DisplayMovie() {
 
   const getMovieRecP = provider => {
     return fetch(
-      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=series&page=1&output_language=en&language=en`,
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&page=1&output_language=en&language=en`,
       {
         method: "GET",
         headers: {
@@ -46,7 +46,7 @@ export default function DisplayMovie() {
 
   const getMovieRecG = genre => {
     return fetch(
-      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&type=series&genre=${genre}&page=1&output_language=en&language=en`,
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&type=movie&genre=${genre}&page=1&output_language=en&language=en`,
       {
         method: "GET",
         headers: {
@@ -72,7 +72,7 @@ export default function DisplayMovie() {
     console.log(provider)
     console.log(genre)
     return fetch(
-      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=series&genre=${genre}&page=1&output_language=en&language=en`,
+      `https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=${provider}&type=movie&genre=${genre}&page=1&output_language=en&language=en`,
       {
         method: "GET",
         headers: {
