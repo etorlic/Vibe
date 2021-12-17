@@ -171,7 +171,7 @@ export default function EditGenre() {
         />
       </FormGroup>
       <Button id="submitButton" variant="contained" onClick={updateStream}>
-        Update Streaming Service
+        Update Genre
       </Button>
     </Box>
   )
