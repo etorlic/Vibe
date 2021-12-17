@@ -21,6 +21,8 @@ Google Doc: https://docs.google.com/document/d/135o6trVHPtITP2_NbRS8FNsUK3TppeP8
 
 GitHub repo: https://github.com/etorlic/Vibe.git
 
+Vibe Application:  https://vibe-b81c4.web.app
+
 ### Built With
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * React.js
@@ -55,22 +57,6 @@ npm install
 ```sh
 npm start
 ```
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-
-
-
-<!-- CONTACT -->
-## Contact
-
-
-
-
-
-
 
 
 
