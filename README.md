@@ -6,8 +6,6 @@
 - [To Clone the Application Getting Started](#to-clone-the-application-getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
-- [Contact](#contact)
 
 
 
